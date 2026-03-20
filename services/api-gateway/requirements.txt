@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+psycopg2-binary
+redis
+sqlalchemy
+pydantic
+python-multipart
+minio
+python-jose[cryptograpy] # Signs / Verifies JWT
+passlib[bcrypt] # Hashes password safely
+bcrypt==3.2.2
