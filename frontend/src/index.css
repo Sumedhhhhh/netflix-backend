@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Netflix CSS Custom Properties */
+:root {
+  --netflix-red: #E50914;
+  --netflix-red-dark: #b20710;
+  --netflix-red-hover: #f40612;
+  --netflix-bg: #141414;
+  --netflix-bg-secondary: #181818;
+  --netflix-bg-elevated: #2f2f2f;
+  --netflix-gray-light: #e5e5e5;
+  --netflix-gray-mid: #808080;
+  --netflix-gray-dark: #404040;
+}
+
+/* Global base styles */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--netflix-bg);
+    color: white;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--netflix-bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--netflix-gray-dark);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--netflix-gray-mid);
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--netflix-gray-dark) var(--netflix-bg);
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  /* Hide scrollbar while keeping scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Shimmer animation for skeletons */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      #181818 0%,
+      #2f2f2f 50%,
+      #181818 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+  }
+}
+
+/* Shimmer keyframe */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Range input styling for player scrubber */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+input[type='range']::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: none;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  background: rgba(255, 255, 255, 0.3);
+  height: 4px;
+  border-radius: 2px;
+}
+
+input[type='range']::-moz-range-track {
+  background: rgba(255, 255, 255, 0.3);
+  height: 4px;
+  border-radius: 2px;
+}
+
+/* Volume slider special styling */
+input[type='range'].accent-white::-webkit-slider-runnable-track {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Full-screen video container */
+:-webkit-full-screen {
+  background: black;
+}
+
+:-moz-full-screen {
+  background: black;
+}
+
+:fullscreen {
+  background: black;
+}
+
+/* Focus styles - Netflix style */
+:focus-visible {
+  outline: 2px solid var(--netflix-red);
+  outline-offset: 2px;
+}
+
+/* Image optimization */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent text selection during video controls interaction */
+.player-controls {
+  user-select: none;
+  -webkit-user-select: none;
+}

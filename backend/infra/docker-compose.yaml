@@ -52,8 +52,14 @@ services :
   worker :
     build : ../worker/transcoder
     container_name : netflix_worker
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - MINIO_ENDPOINT=minio:9000
+      - MINIO_ACCESS_KEY=admin
+      - MINIO_SECRET_KEY=password123
+      - OUTPUT_BUCKET=videos
     depends_on :
-      - redis 
+      - redis
       - minio
     
 volumes :
